@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 
 type FormData = {
   childAge: string;
@@ -24,6 +25,8 @@ export default function Home() {
     exampleScript: false,
   });
 
+  const [menuOpen, setMenuOpen] = useState(false); // Hamburger menu toggle
+
   const toggleCollapse = (section: keyof typeof collapsed) => {
     setCollapsed((prev) => ({ ...prev, [section]: !prev[section] }));
   };
@@ -39,7 +42,6 @@ export default function Home() {
       if (!res.ok) throw new Error(await res.text());
       const json = await res.json();
 
-      // Merge current situation into summary
       const situationSummary = `Child Age: ${data.childAge}\nSituation: ${data.situationType}\nGoal: ${data.goal}\nDescription: ${data.description}`;
       json.guidance.summary = `${situationSummary}\n\n${json.guidance.summary}`;
 
@@ -115,10 +117,14 @@ ${result.disclaimer}
   );
 
   const collapseClass = (section: keyof typeof collapsed) =>
-    `overflow-hidden transition-all duration-300 ${collapsed[section] ? "max-h-0" : "max-h-[1000px] mt-2"}`;
+    `overflow-hidden transition-all duration-300 ${
+      collapsed[section] ? "max-h-0" : "max-h-[1000px] mt-2"
+    }`;
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-start bg-gray-50 p-4">
+    <div className="flex flex-col items-center justify-start p-4">
+
+      {/* Form & Guidance Card */}
       <div className="w-full max-w-xl bg-white rounded-lg shadow-lg p-6 mt-6">
         {/* Title */}
         <h1 className="text-4xl font-extrabold text-center mb-2">Parent Copilot</h1>
@@ -253,13 +259,13 @@ ${result.disclaimer}
               </button>
               <button
                 onClick={downloadGuidance}
-                className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-500"
+                className="flex-1 bg-blue-700 text-white py-2 rounded hover:bg-blue-600"
               >
                 Download as TXT
               </button>
             </div>
 
-            {/* Add Another Situation at bottom */}
+            {/* Submit Another */}
             <button
               className="mt-4 w-full bg-gray-800 text-white py-2 rounded hover:bg-gray-700"
               onClick={() => {
@@ -280,6 +286,6 @@ ${result.disclaimer}
           This tool does not replace professional medical or psychological advice.
         </p>
       </div>
-    </main>
+    </div>
   );
 }
