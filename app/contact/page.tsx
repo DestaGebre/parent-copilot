@@ -11,100 +11,97 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-start p-6 md:p-12 lg:p-16">
-      
-      {/* 1. TEXT SECTION */}
-      <div className="max-w-2xl w-full text-center mb-10 space-y-4">
-        <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
-          Let’s Connect
-        </h1>
-        <p className="text-gray-600 text-lg leading-relaxed">
-          Have a question about the Parent Copilot, an opinion on our guidance, 
-          or a suggestion for a new feature? We’d love to hear from you.
-        </p>
-      </div>
-
-      {/* 2. DIRECT EMAIL BOX */}
-      <div className="max-w-2xl w-full mb-12">
-        <div className="bg-blue-50 border border-blue-100 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-center md:text-left">
-            <h3 className="text-blue-900 font-bold text-xl">Send us an email</h3>
-            <p className="text-blue-700/70 text-sm">For direct inquiries and long-form feedback</p>
-          </div>
-          <a 
-            href="mailto:hello@parentingvirtue.com" 
-            className="group flex items-center gap-3 bg-white text-blue-800 px-6 py-3 rounded-2xl font-bold shadow-sm hover:shadow-md transition-all active:scale-95"
-          >
-            <span>hello@parentingvirtue.com</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      {/* 3. CONTACT FORM CARD */}
-      <div className="w-full max-w-2xl bg-white rounded-[2rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8 md:p-12">
-        <div className="mb-10">
-          <h2 className="text-2xl font-bold text-gray-900">Or use the contact form below</h2>
-          <div className="h-1 w-12 bg-blue-600 rounded-full mt-2"></div>
-        </div>
-
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-gray-400 ml-1">Full Name</label>
-              <input 
-                {...register("name")} 
-                required 
-                className="w-full bg-gray-50 border border-gray-100 p-4 rounded-2xl focus:ring-2 focus:ring-blue-400 focus:bg-white outline-none transition-all" 
-                placeholder="Jane Smith" 
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-gray-400 ml-1">Email Address</label>
-              <input 
-                {...register("email")} 
-                type="email" 
-                required 
-                className="w-full bg-gray-50 border border-gray-100 p-4 rounded-2xl focus:ring-2 focus:ring-blue-400 focus:bg-white outline-none transition-all" 
-                placeholder="jane@example.com" 
-              />
+    <div className="min-h-[80vh] flex items-center justify-center p-6">
+      <div className="w-full max-w-4xl bg-white rounded-[2.5rem] shadow-xl shadow-wisdom/5 border border-gray-100 overflow-hidden flex flex-col md:flex-row">
+        
+        {/* LEFT SIDE: BRANDING & DIRECT CONTACT */}
+        <div className="md:w-1/3 bg-wisdom p-8 md:p-12 text-white flex flex-col justify-between">
+          <div>
+            <h1 className="text-3xl font-serif font-bold mb-4">Get in Touch</h1>
+            <p className="text-blue-100/80 text-sm leading-relaxed mb-8 font-sans">
+              Have a question about the Parent Copilot or a suggestion for a new virtue? We'd love to hear from you.
+            </p>
+            
+            <div className="space-y-6">
+              <div className="group">
+                <p className="text-[10px] uppercase tracking-widest text-virtue font-bold mb-1">Email us directly</p>
+                <a href="mailto:hello@parentingvirtue.com" className="text-sm font-medium hover:text-virtue transition-colors break-all">
+                  hello@parentingvirtue.com
+                </a>
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-virtue font-bold mb-1">Response Time</p>
+                <p className="text-sm opacity-80">Within 48 business hours</p>
+              </div>
             </div>
           </div>
-          
-          <div className="flex flex-col gap-2">
-            <label className="text-xs font-bold uppercase tracking-widest text-gray-400 ml-1">Topic</label>
-            <input 
-              {...register("topic")} 
-              required 
-              className="w-full bg-gray-50 border border-gray-100 p-4 rounded-2xl focus:ring-2 focus:ring-blue-400 focus:bg-white outline-none transition-all" 
-              placeholder="What can we help you with?" 
-            />
+
+          <div className="hidden md:block pt-12">
+            <div className="h-px w-12 bg-virtue/50 mb-4"></div>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-medium">
+              Parenting Virtue
+            </p>
           </div>
+        </div>
 
-          <div className="flex flex-col gap-2">
-            <label className="text-xs font-bold uppercase tracking-widest text-gray-400 ml-1">Your Message</label>
-            <textarea 
-              {...register("message")} 
-              required 
-              className="w-full bg-gray-50 border border-gray-100 p-5 h-44 rounded-3xl focus:ring-2 focus:ring-blue-400 focus:bg-white outline-none transition-all resize-none" 
-              placeholder="Tell us more..." 
-            />
-          </div>
+        {/* RIGHT SIDE: THE FORM */}
+        <div className="md:w-2/3 p-8 md:p-12">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[10px] font-bold uppercase tracking-wider text-stable ml-1">Full Name</label>
+                <input 
+                  {...register("name")} 
+                  required 
+                  className="w-full bg-gray-50 border border-gray-100 p-3 rounded-xl focus:ring-2 focus:ring-wisdom focus:bg-white outline-none transition-all text-sm" 
+                  placeholder="Jane Smith" 
+                />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[10px] font-bold uppercase tracking-wider text-stable ml-1">Email Address</label>
+                <input 
+                  {...register("email")} 
+                  type="email" 
+                  required 
+                  className="w-full bg-gray-50 border border-gray-100 p-3 rounded-xl focus:ring-2 focus:ring-wisdom focus:bg-white outline-none transition-all text-sm" 
+                  placeholder="jane@example.com" 
+                />
+              </div>
+            </div>
+            
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] font-bold uppercase tracking-wider text-stable ml-1">Topic</label>
+              <input 
+                {...register("topic")} 
+                required 
+                className="w-full bg-gray-50 border border-gray-100 p-3 rounded-xl focus:ring-2 focus:ring-wisdom focus:bg-white outline-none transition-all text-sm" 
+                placeholder="How can we help?" 
+              />
+            </div>
 
-          <button 
-            type="submit" 
-            className="w-full bg-blue-800 text-white py-5 rounded-2xl font-bold text-lg hover:bg-black transition-all shadow-lg hover:shadow-blue-200 active:scale-[0.98]"
-          >
-            Submit Message
-          </button>
-        </form>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] font-bold uppercase tracking-wider text-stable ml-1">Message</label>
+              <textarea 
+                {...register("message")} 
+                required 
+                className="w-full bg-gray-50 border border-gray-100 p-4 h-32 rounded-2xl focus:ring-2 focus:ring-wisdom focus:bg-white outline-none transition-all resize-none text-sm" 
+                placeholder="Your message here..." 
+              />
+            </div>
 
-        <p className="mt-8 text-center text-xs text-gray-400 leading-relaxed">
-          By contacting us, you agree to our <a href="/privacy" className="underline hover:text-blue-600">Privacy Policy</a>. 
-          We typically respond within 2 business days.
-        </p>
+            <button 
+              type="submit" 
+              className="w-full bg-wisdom text-white py-4 rounded-xl font-bold text-sm hover:bg-slate-900 transition-all shadow-md active:scale-[0.98]"
+            >
+              Send Message
+            </button>
+          </form>
+
+          <p className="mt-6 text-center text-[10px] text-gray-400">
+            By contacting us, you agree to our <a href="/privacy" className="underline hover:text-wisdom">Privacy Policy</a>.
+          </p>
+        </div>
+
       </div>
     </div>
   );

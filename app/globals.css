@@ -1,26 +1,54 @@
+/* 1. ALL @imports must be at the very top */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 @import "tailwindcss";
 
+/* 2. Then your variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Palette */
+  --background: #f8fafc; /* Ghost White */
+  --foreground: #0f172a; /* Near Black */
+  
+  --brand-primary: #1e3a8a; /* Deep Indigo */
+  --brand-secondary: #475569; /* Soft Slate */
+  --brand-accent: #f59e0b; /* Soft Amber */
+  
+  /* Typography mappings */
+  --font-serif: "Lora", serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
 }
 
+/* 3. Then your Tailwind theme extensions */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  /* Brand Colors */
+  --color-wisdom: var(--brand-primary);
+  --color-stable: var(--brand-secondary);
+  --color-virtue: var(--brand-accent);
+  
+  /* Typography */
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* 4. Finally, your base styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Smooth transitions for a premium feel */
+* {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
